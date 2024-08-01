@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Heading } from '@radix-ui/themes';
 import { Flex } from '@radix-ui/themes';
-import DestinationList from './components/destinationList';
+import DestinationList from './components/DestinationList';
 
 export default function Home() {
   return (
