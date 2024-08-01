@@ -1,4 +1,6 @@
+'use client';
 import React from 'react';
+import { Box, Flex } from '@radix-ui/themes';
 
 // Define a type for the destination objects
 interface Destination {
@@ -20,6 +22,18 @@ const destinations: Destination[] = [
     name: 'London',
     imageUrl: '/images/london.jpg',
   },
+  {
+    name: 'Rome',
+    imageUrl: '/images/rome.jpg',
+  },
+  {
+    name: 'Stockholm',
+    imageUrl: '/images/stockholm.jpg',
+  },
+  {
+    name: 'Madrid',
+    imageUrl: '/images/madrid.jpg',
+  },
 ];
 
 // Define props type for DestinationCard
@@ -33,20 +47,20 @@ const DestinationCard: React.FC<DestinationCardProps> = ({
   name,
   imageUrl,
 }) => (
-  <div className="bg-white shadow-md rounded-lg overflow-hidden">
-    <div className="w-[240px] aspect-[4/3] overflow-hidden">
-      <img src={imageUrl} alt={name} className="w-full h-full object-cover" />
-    </div>
-    <div className="p-4">
+  <Box className="bg-white h-[300px] shadow-md rounded-lg overflow-hidden">
+    <Box className="w-[240px] overflow-hidden">
+      <img src={imageUrl} alt={name} className="w-full" />
+    </Box>
+    <Box className="p-4">
       <h3 className="text-xl font-semibold text-center">{name}</h3>
-    </div>
-  </div>
+    </Box>
+  </Box>
 );
 
 // DestinationList component
-const DestinationList: React.FC = () => {
+const DestinationList = () => {
   return (
-    <div className="flex flex-wrap justify-center gap-6 p-6 bg-gray-100 min-h-screen">
+    <Flex className="flex flex-wrap justify-center gap-6 p-6 bg-gray-100">
       {destinations.map((destination) => (
         <DestinationCard
           key={destination.name}
@@ -54,7 +68,7 @@ const DestinationList: React.FC = () => {
           imageUrl={destination.imageUrl}
         />
       ))}
-    </div>
+    </Flex>
   );
 };
 

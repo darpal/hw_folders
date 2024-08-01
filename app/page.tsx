@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 import { Heading } from '@radix-ui/themes';
 import { Flex } from '@radix-ui/themes';
@@ -5,7 +6,7 @@ import DestinationList from './components/DestinationList';
 
 export default function Home() {
   return (
-    <div>
+    <main>
       <Flex className="flex flex-col items-center justify-center  bg-gray-100 space-y-4">
         <Heading size="6" weight="medium" className="text-center">
           Holiwise - Destinations
@@ -20,7 +21,7 @@ export default function Home() {
       <Flex className="min-h-[440px] flex">
         {/* Left column */}
         <Flex className="flex-1 p-4 bg-gray-100 justify-normal">
-          <Heading className="pb-4">Destinations</Heading>
+          <Heading className="mb-8">Destinations</Heading>
           <DestinationList />
         </Flex>
         {/* Right column */}
@@ -31,6 +32,6 @@ export default function Home() {
       {/* The two columns / end */}
 
       <Link href="/folder">[Go to folder]</Link>
-    </div>
+    </main>
   );
 }
