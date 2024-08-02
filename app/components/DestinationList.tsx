@@ -4,6 +4,7 @@ import { Box, Flex } from '@radix-ui/themes';
 
 // Define a type for the destination objects
 interface Destination {
+  id: number;
   name: string;
   imageUrl: string;
 }
@@ -11,26 +12,32 @@ interface Destination {
 // Sample data for destinations
 const destinations: Destination[] = [
   {
+    id: 1,
     name: 'New York',
     imageUrl: '/images/newyork.jpg',
   },
   {
+    id: 2,
     name: 'Paris',
     imageUrl: '/images/paris.jpg',
   },
   {
+    id: 3,
     name: 'London',
     imageUrl: '/images/london.jpg',
   },
   {
+    id: 4,
     name: 'Rome',
     imageUrl: '/images/rome.jpg',
   },
   {
+    id: 5,
     name: 'Stockholm',
     imageUrl: '/images/stockholm.jpg',
   },
   {
+    id: 6,
     name: 'Madrid',
     imageUrl: '/images/madrid.jpg',
   },
