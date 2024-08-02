@@ -26,7 +26,7 @@ export default function Home() {
           <DestinationList />
         </Box>
         {/* Right column */}
-        <Box className="w-[300px] p-4 bg-gray-100">
+        <Box className="w-[350px] p-4 bg-gray-100">
           <Heading className="pb-4">Folders</Heading>
           <FolderList />
         </Box>
