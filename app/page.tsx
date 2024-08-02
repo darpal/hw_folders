@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { Heading } from '@radix-ui/themes';
-import { Flex, TextField } from '@radix-ui/themes';
+import { Flex, TextField, Box } from '@radix-ui/themes';
 import DestinationList from './components/DestinationList';
 import FolderList from './components/FolderList';
 
@@ -21,15 +21,15 @@ export default function Home() {
 
       <Flex className="min-h-[440px] flex">
         {/* Left column */}
-        <Flex className="flex-1 p-4 bg-gray-100 justify-normal">
+        <Box className="flex-1 p-4 bg-gray-100 justify-normal">
           <Heading className="mb-8">Destinations</Heading>
           <DestinationList />
-        </Flex>
+        </Box>
         {/* Right column */}
-        <Flex className="w-[300px] p-4 bg-gray-100">
+        <Box className="w-[300px] p-4 bg-gray-100">
           <Heading className="pb-4">Folders</Heading>
           <FolderList />
-        </Flex>
+        </Box>
       </Flex>
       {/* The two columns / end */}
 

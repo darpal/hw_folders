@@ -1,7 +1,6 @@
 'use client';
-import React, { useState } from 'react';
-import { Button } from '@radix-ui/themes'; // Assuming Radix UI Button is used
-import Image from 'next/image';
+import React, { useState, useEffect } from 'react';
+import { Button } from '@radix-ui/themes';
 
 type Item = {
   id: number;
@@ -10,8 +9,24 @@ type Item = {
 
 const FolderList: React.FC = () => {
   const [items, setItems] = useState<Item[]>([]);
-  const [name, setName] = useState('');
-  //   const [imageUrls, setImageUrls] = useState<string[]>([]);
+  const [name, setName] = useState<string>('');
+
+  // Load items from localStorage on component mount
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const storedItems = localStorage.getItem('folderListItems');
+      if (storedItems) {
+        setItems(JSON.parse(storedItems));
+      }
+    }
+  }, []);
+
+  // Save items to localStorage whenever they change
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('folderListItems', JSON.stringify(items));
+    }
+  }, [items]);
 
   const addItem = () => {
     if (name.trim() !== '') {
