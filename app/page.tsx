@@ -1,39 +1,37 @@
 'use client';
 import Link from 'next/link';
-import { Heading } from '@radix-ui/themes';
-import { Flex, TextField, Box } from '@radix-ui/themes';
+import { Flex, Box, Container, Heading, Text } from '@radix-ui/themes';
 import DestinationList from './components/DestinationList';
 import FolderList from './components/FolderList';
 
 export default function Home() {
   return (
     <main>
-      <Flex className="flex flex-col items-center justify-center  bg-gray-100 space-y-4">
-        <Heading size="6" weight="medium" className="text-center">
-          Holiwise - Destinations
-        </Heading>
-        <Heading size="2" className="text-center">
-          Organise your dream destinations in folders here
-        </Heading>
-      </Flex>
-
-      {/* The two columns / start */}
-
-      <Flex className="min-h-[440px] flex">
-        {/* Left column */}
-        <Box className="flex-1 p-4 bg-gray-100 justify-normal">
-          <Heading className="mb-8">Destinations</Heading>
-          <DestinationList />
-        </Box>
-        {/* Right column */}
-        <Box className="w-[350px] p-4 bg-gray-100">
-          <Heading className="pb-4">Folders</Heading>
-          <FolderList />
-        </Box>
-      </Flex>
-      {/* The two columns / end */}
-
-      <Link href="/folder">[Go to folder]</Link>
+      <Container size="6">
+        <Flex direction="column" className="my-8">
+          <Heading size="8" weight="medium" className="text-center">
+            Holiwise - Destinations
+          </Heading>
+          <Text align="center" size="4">
+            Organise your dream destinations in folders here
+          </Text>
+        </Flex>
+        {/* The two columns / start */}
+        <Flex minHeight="440px" className="bg-slate-100 rounded-3xl p-4">
+          {/* Left column */}
+          <Box>
+            <Heading size="5">Destinations</Heading>
+            <DestinationList />
+          </Box>
+          {/* Right column */}
+          <Box width="350px" className=" border-l-white border-l-2 pl-2">
+            <Heading size="5">Folders</Heading>
+            <FolderList />
+          </Box>
+        </Flex>
+        {/* The two columns / end */}
+        <Link href="/folder">[Go to folder]</Link>
+      </Container>
     </main>
   );
 }
