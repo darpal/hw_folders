@@ -8,14 +8,6 @@ export default function Home() {
   return (
     <main>
       <Container size="4">
-        <Flex direction="column" className="my-8">
-          <Heading size="8" weight="medium" className="text-center">
-            Holiwise - Destinations
-          </Heading>
-          <Text align="center" size="4">
-            Organise your dream destinations in folders here
-          </Text>
-        </Flex>
         {/* The two columns / start */}
         <Flex minHeight="440px" className="bg-slate-100 rounded-3xl p-4">
           {/* Left column */}
