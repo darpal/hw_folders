@@ -7,7 +7,7 @@ import FolderList from './components/FolderList';
 export default function Home() {
   return (
     <main>
-      <Container size="6">
+      <Container size="4">
         <Flex direction="column" className="my-8">
           <Heading size="8" weight="medium" className="text-center">
             Holiwise - Destinations
