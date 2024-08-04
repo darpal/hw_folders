@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { Button } from '@radix-ui/themes';
+import { Button, IconButton } from '@radix-ui/themes';
+import { TrashIcon } from '@radix-ui/react-icons';
 
 type Item = {
   id: number;
@@ -35,6 +36,16 @@ const FolderList: React.FC = () => {
     }
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      addItem();
+    }
+  };
+
+  const deleteItem = (id: number) => {
+    setItems(items.filter(item => item.id !== id));
+  };
+
   return (
     <div className="p-4">
       <div className="flex items-center mb-4">
@@ -43,6 +54,7 @@ const FolderList: React.FC = () => {
           placeholder="Enter name"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          onKeyDown={handleKeyPress}
           className="border p-2 rounded mr-2"
         />
         <Button
@@ -59,6 +71,10 @@ const FolderList: React.FC = () => {
           className="mb-4 p-4 border rounded-lg flex items-center space-x-4 bg-white"
         >
           <span className="font-semibold">{item.name}</span>
+          <div className="flex-grow"></div>
+          <IconButton onClick={() => deleteItem(item.id)} aria-label="Delete" className="ml-auto">
+            <TrashIcon className="w-5 h-5" />
+          </IconButton>
         </div>
       ))}
     </div>
