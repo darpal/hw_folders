@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, IconButton } from '@radix-ui/themes';
 import { TrashIcon } from '@radix-ui/react-icons';
+import { useDroppable } from '@dnd-kit/core';
 
 type Item = {
   id: number;
@@ -42,12 +43,37 @@ const FolderList: React.FC = () => {
     }
   };
 
-  const deleteItem = (id: number) => {
-    setItems(items.filter(item => item.id !== id));
-  };
+  const Folder = ({ item }: { item: Item }) => {
+    const { isOver, setNodeRef } = useDroppable({
+      id: `droppable-${item.id}`,
+      data: {
+        current: item
+      }
+    });
+
+    const style = {
+      color: isOver ? 'green' : undefined,
+    };
+
+    const deleteItem = (id: number) => {
+      setItems(items.filter(item => item.id !== id));
+    };
+
+    return <div
+      className="mb-4 p-4 border rounded-lg flex items-center space-x-4 bg-white"
+      ref={setNodeRef} style={style}
+    >
+      <span className="font-semibold">{item.name}</span>
+      <div className="flex-grow"></div>
+      <IconButton onClick={() => deleteItem(item.id)} aria-label="Delete" className="ml-auto">
+        <TrashIcon className="w-5 h-5" />
+      </IconButton>
+    </div>
+  }
+
 
   return (
-    <div className="p-4">
+    <div className="p-4" >
       <div className="flex items-center mb-4">
         <input
           type="text"
@@ -65,20 +91,12 @@ const FolderList: React.FC = () => {
         </Button>
       </div>
 
-      {items.map((item) => (
-        <div
-          key={item.id}
-          className="mb-4 p-4 border rounded-lg flex items-center space-x-4 bg-white"
-        >
-          <span className="font-semibold">{item.name}</span>
-          <div className="flex-grow"></div>
-          <IconButton onClick={() => deleteItem(item.id)} aria-label="Delete" className="ml-auto">
-            <TrashIcon className="w-5 h-5" />
-          </IconButton>
-        </div>
-      ))}
+      {items.map((item) => <Folder item={item} key={item.id} />)}
+
     </div>
   );
 };
+
+
 
 export default FolderList;

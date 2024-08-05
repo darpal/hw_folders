@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "New York",
+    "imageUrl": "/images/newyork.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Paris",
+    "imageUrl": "/images/paris.jpg"
+  },
+  {
+    "id": 3,
+    "name": "London",
+    "imageUrl": "/images/london.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Rome",
+    "imageUrl": "/images/rome.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Stockholm",
+    "imageUrl": "/images/stockholm.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Madrid",
+    "imageUrl": "/images/madrid.jpg"
+  }
+]

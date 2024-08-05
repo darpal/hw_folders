@@ -1,12 +1,13 @@
-import Image from 'next/image';
-import Link from 'next/link';
+'use client';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
-  return (
-    <div>
-      <h1>Hellow folder page</h1>
-      <br />
-      <Link href="/folder/1">Go to folder 1</Link>
-    </div>
-  );
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push('/');
+  }, [router]);
+
+  return null;
 }
