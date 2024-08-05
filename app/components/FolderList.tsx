@@ -1,17 +1,17 @@
-'use client'
-import React, { useState, useEffect } from 'react'
-import { Box, Button, Flex, Grid, IconButton } from '@radix-ui/themes'
-import { TrashIcon } from '@radix-ui/react-icons'
-import { useDroppable } from '@dnd-kit/core'
-import { Destination, Folder } from '../types'
-import destinations from '@/data/destinations.json'
-import Image from 'next/image'
+'use client';
+import React, { useState, useEffect } from 'react';
+import { Box, Button, Flex, Grid, IconButton } from '@radix-ui/themes';
+import { TrashIcon } from '@radix-ui/react-icons';
+import { useDroppable } from '@dnd-kit/core';
+import { Destination, Folder } from '../types';
+import destinations from '@/data/destinations.json';
+import Image from 'next/image';
 
 const FolderList = ({ folders: newFolders }: { folders: Folder[] }) => {
-  const [folders, setFolders] = useState<Folder[]>(newFolders)
-  const [name, setName] = useState<string>('')
+  const [folders, setFolders] = useState<Folder[]>(newFolders);
+  const [name, setName] = useState<string>('');
 
-  console.log('inner folders', newFolders)
+  console.log('inner folders', newFolders);
 
   // Load items from localStorage on component mount
   // useEffect(() => {
@@ -38,31 +38,31 @@ const FolderList = ({ folders: newFolders }: { folders: Folder[] }) => {
       setFolders([
         ...folders,
         { id: folders.length + 1, name, destinations: [] },
-      ])
-      setName('')
+      ]);
+      setName('');
     }
-  }
+  };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      addItem()
+      addItem();
     }
-  }
+  };
 
   const Folder = ({ item }: { item: Folder }) => {
     const { isOver, setNodeRef } = useDroppable({
       id: `droppable-${item.id}`,
       data: item,
-    })
+    });
 
     const style = {
       color: isOver ? 'green' : undefined,
       border: isOver ? '2px solid green' : undefined,
-    }
+    };
 
     const deleteFolder = (id: number) => {
-      setFolders(folders.filter((folder) => folder.id !== id))
-    }
+      setFolders(folders.filter((folder) => folder.id !== id));
+    };
 
     return (
       <Box
@@ -71,13 +71,13 @@ const FolderList = ({ folders: newFolders }: { folders: Folder[] }) => {
         style={style}
       >
         <span className="font-semibold">{item.name}</span>
-        <IconButton
+        {/* <IconButton
           onClick={() => deleteFolder(item.id)}
           aria-label="Delete"
           className="ml-auto"
         >
           <TrashIcon className="w-5 h-5" />
-        </IconButton>
+        </IconButton> */}
 
         <Box mt="5">
           <Grid gap="3" columns="3">
@@ -86,15 +86,14 @@ const FolderList = ({ folders: newFolders }: { folders: Folder[] }) => {
             ))}
           </Grid>
         </Box>
-
       </Box>
-    )
-  }
+    );
+  };
 
   const Destination = ({ id }: { id: number }) => {
     const destination = destinations.find(
       (destination) => destination.id === id
-    )
+    );
 
     return (
       <Box>
@@ -107,8 +106,8 @@ const FolderList = ({ folders: newFolders }: { folders: Folder[] }) => {
           />
         )}
       </Box>
-    )
-  }
+    );
+  };
 
   return (
     <div className="p-4">
@@ -129,13 +128,11 @@ const FolderList = ({ folders: newFolders }: { folders: Folder[] }) => {
         </Button>
       </div>
 
-
       {newFolders.map((folder) => (
         <Folder item={folder} key={folder.id} />
       ))}
-
     </div>
-  )
-}
+  );
+};
 
-export default FolderList
+export default FolderList;
