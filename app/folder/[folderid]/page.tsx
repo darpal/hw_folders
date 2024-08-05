@@ -46,7 +46,7 @@ const FolderDetailpage = ({ params: { folderId } }: Props) => {
           ))}
         </Grid>
       </Flex>
-      <div>FolderDetailpage of folderid={folderId}</div>
+      {/* <div>FolderDetailpage of folderid={folderId}</div> */}
     </Container>
   );
 };
@@ -65,7 +65,9 @@ const DestinationCard = ({ id }: { id: number }) => {
             width="200"
             height="200"
           />
-          <Text>{destination.name}</Text>
+          <Text size="2" weight="bold">
+            {destination.name}
+          </Text>
         </Box>
       )}
     </Box>

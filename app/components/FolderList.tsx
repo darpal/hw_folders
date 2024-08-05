@@ -1,17 +1,18 @@
-'use client';
-import React, { useState, useEffect } from 'react';
-import { Box, Button, Flex, Grid, IconButton } from '@radix-ui/themes';
-import { TrashIcon } from '@radix-ui/react-icons';
-import { useDroppable } from '@dnd-kit/core';
-import { Destination, Folder } from '../types';
-import destinations from '@/data/destinations.json';
-import Image from 'next/image';
+"use client";
+import React, { useState, useEffect } from "react";
+import { Box, Button, Flex, Grid, IconButton } from "@radix-ui/themes";
+import { TrashIcon } from "@radix-ui/react-icons";
+import { useDroppable } from "@dnd-kit/core";
+import { Destination, Folder } from "../types";
+import destinations from "@/data/destinations.json";
+import Image from "next/image";
+import { useRouter } from 'next/navigation';
 
 const FolderList = ({ folders: newFolders }: { folders: Folder[] }) => {
   const [folders, setFolders] = useState<Folder[]>(newFolders);
-  const [name, setName] = useState<string>('');
+  const [name, setName] = useState<string>("");
 
-  console.log('inner folders', newFolders);
+  console.log("inner folders", newFolders);
 
   // Load items from localStorage on component mount
   // useEffect(() => {
@@ -34,17 +35,17 @@ const FolderList = ({ folders: newFolders }: { folders: Folder[] }) => {
   // }, [folders])
 
   const addItem = () => {
-    if (name.trim() !== '') {
+    if (name.trim() !== "") {
       setFolders([
         ...folders,
         { id: folders.length + 1, name, destinations: [] },
       ]);
-      setName('');
+      setName("");
     }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       addItem();
     }
   };
@@ -54,10 +55,11 @@ const FolderList = ({ folders: newFolders }: { folders: Folder[] }) => {
       id: `droppable-${item.id}`,
       data: item,
     });
+    const router = useRouter();
 
     const style = {
-      color: isOver ? 'green' : undefined,
-      border: isOver ? '2px solid green' : undefined,
+      color: isOver ? "green" : undefined,
+      border: isOver ? "2px solid green" : undefined,
     };
 
     const deleteFolder = (id: number) => {
@@ -78,7 +80,7 @@ const FolderList = ({ folders: newFolders }: { folders: Folder[] }) => {
         >
           <TrashIcon className="w-5 h-5" />
         </IconButton> */}
-
+        <Button onClick={() => router.push(`/folder/${item.id}`)}>Open</Button>
         <Box mt="5">
           <Grid gap="3" columns="3">
             {item.destinations?.map((id) => (
