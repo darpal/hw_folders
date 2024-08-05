@@ -3,13 +3,7 @@ import React from 'react';
 import { Box, Flex } from '@radix-ui/themes';
 import destinationsJSON from '@/data/destinations.json';
 import { useDraggable } from '@dnd-kit/core'
-
-// Define a type for the destination objects
-interface Destination {
-  id: number;
-  name: string;
-  imageUrl: string;
-}
+import { Destination } from '../types';
 
 // Sample data for destinations
 const destinations: Destination[] = destinationsJSON
@@ -17,7 +11,6 @@ const destinations: Destination[] = destinationsJSON
 // Define props type for DestinationCard
 interface DestinationCardProps {
   destination: Destination;
-
 }
 
 // DestinationCard component
@@ -29,9 +22,7 @@ const DestinationCard: React.FC<DestinationCardProps> = ({
 
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: `draggable-${id}`,
-    data: {
-      current: destination
-    }
+    data: destination
   });
 
   const style = transform ? {
